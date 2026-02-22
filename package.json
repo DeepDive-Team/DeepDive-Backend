@@ -1,0 +1,24 @@
+{
+  "type": "module",
+  "name": "deepdive_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "npx tsc --watch",
+    "run": "node dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@google/genai": "^1.36.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "cors": "^2.8.5",
+    "express": "^5.2.1"
+  },
+  "dependencies": {
+    "typescript": "^5.9.3"
+  }
+}
