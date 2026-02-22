@@ -5,6 +5,7 @@
   "main": "server.ts",
   "type": "module",
   "scripts": {
+    "dev": "npx tsx src/server.ts",
     "watch": "npx tsc --watch",
     "run": "node dist/server.js"
   },
