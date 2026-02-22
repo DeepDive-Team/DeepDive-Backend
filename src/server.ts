@@ -1,6 +1,6 @@
 import express  from 'express';
 import type { Request, Response } from 'express';
-import { categorize_request } from './categorizeRequest.ts';
+// import { categorize_request } from 'categorizeRequest.ts';
 import cors from 'cors';
 
 const app = express();
