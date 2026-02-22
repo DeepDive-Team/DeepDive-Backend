@@ -20,6 +20,7 @@
     "@google/genai": "^1.42.0",
     "@types/chrome": "^0.1.37",
     "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6"
+    "@types/express": "^5.0.6",
+    "vercel": "^50.22.1"
   }
 }
