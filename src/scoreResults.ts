@@ -1,6 +1,5 @@
 import {
   GoogleGenAI,
-  ThinkingLevel,
   Type,
 } from '@google/genai';
 
