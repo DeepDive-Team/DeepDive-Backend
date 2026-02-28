@@ -59,9 +59,9 @@ app.post('/api/queries/send', async (req: Request, res: Response) => {
 		return;
 	}
 
-	const send_survey: number = Math.floor((Math.random() * 4));
+	const send_survey: number = Math.floor((Math.random() * 2));
 	let response_id: number = -1;
-	if (send_survey == 3) {
+	if (send_survey == 1) {
 		// Random 6 digit response id between 100000 and 999998
 		response_id = Math.floor((Math.random() * 999999) + 100000);
 		response_ids.push(response_id);
