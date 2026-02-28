@@ -3,7 +3,7 @@ import type { Request, Response } from 'express';
 import { categorize_response } from './categorizeResponse.js';
 import cors from 'cors';
 import { score_results } from './scoreResults.js';
-import { addSurveyResults } from './database.js';
+import { addSurveyResults, countSearchQuery, countSearchRankings, countSurveySent } from './database.js';
 
 const app = express();
 const port = 5000;
@@ -53,6 +53,8 @@ app.post('/api/queries/send', async (req: Request, res: Response) => {
 
 	const json = JSON.parse(response);
 
+	await countSearchQuery();
+
 	// No results will be shown if the response is creative, so feedback cannot be given
 	if (json['categorization'] == 'creative') {
 		res.send(json);
@@ -65,10 +67,10 @@ app.post('/api/queries/send', async (req: Request, res: Response) => {
 		// Random 6 digit response id between 100000 and 999998
 		response_id = Math.floor((Math.random() * 999999) + 100000);
 		response_ids.push(response_id);
+		await countSurveySent();
 	}
 
 	json['response_id'] = response_id;
-	console.log(json)
 	
 
 	res.send(json);
@@ -84,6 +86,8 @@ app.post('/api/queries/rank', async (req: Request, res: Response) => {
 
 	// TODO: Check ai response before sending
 	// await new Promise(f => setTimeout(f, 10000));
+	await countSearchRankings();
+
 	res.send(json);
 });
 
