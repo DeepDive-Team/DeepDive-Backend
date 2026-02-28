@@ -45,8 +45,8 @@ app.post('/api/queries/send', async (req: Request, res: Response) => {
 	const cleaned_input = truncateSearchQuery(input);
 	const input_json = { "input": cleaned_input };
 	// const { input } = JSON.parse(request);
-	// const response = await categorize_response(JSON.stringify(input_json));
-	const response = `{"categorization": "factual", "search_queries": ["This is a test. This is a long one just to test!", "Here\'s a shorter one"]}`
+	const response = await categorize_response(JSON.stringify(input_json));
+	// const response = `{"categorization": "factual", "search_queries": ["This is a test. This is a long one just to test!", "Here\'s a shorter one"]}`
 
 	const json = JSON.parse(response);
 
@@ -58,7 +58,7 @@ app.post('/api/queries/send', async (req: Request, res: Response) => {
 
 	const send_survey: number = Math.floor((Math.random() * 4));
 	let response_id: number = -1;
-	if (send_survey == 3 || 1 == 1) {
+	if (send_survey == 3) {
 		// Random 6 digit response id between 100000 and 999998
 		response_id = Math.floor((Math.random() * 999999) + 100000);
 		response_ids.push(response_id);
@@ -110,6 +110,6 @@ app.post('/api/metrics/', async (req: Request, res: Response) => {
 // Start the server
 export default app;
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`Server running at http://localhost:${port}`);
+// });
