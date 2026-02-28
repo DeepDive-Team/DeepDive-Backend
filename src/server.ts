@@ -3,9 +3,12 @@ import type { Request, Response } from 'express';
 import { categorize_response } from './categorizeResponse.js';
 import cors from 'cors';
 import { score_results } from './scoreResults.js';
+import { addSurveyResults } from './database.js';
 
 const app = express();
 const port = 5000;
+
+const isDevelopment: boolean = (process.env.NODE_ENV == 'development');
 
 let response_ids: number[] = [];
 
@@ -101,8 +104,7 @@ app.post('/api/metrics/', async (req: Request, res: Response) => {
 
 	response_ids = response_ids.filter(id => id !== found_key);
 
-	console.log("Valid id!");
-	console.log("Response was good? " + helpful);
+	await addSurveyResults(helpful);
 
 	res.sendStatus(200).end();
 });
@@ -110,6 +112,8 @@ app.post('/api/metrics/', async (req: Request, res: Response) => {
 // Start the server
 export default app;
 
-// app.listen(port, () => {
-//   console.log(`Server running at http://localhost:${port}`);
-// });
+if (isDevelopment) {
+	app.listen(port, () => {
+	console.log(`Server running at http://localhost:${port}`);
+	});
+}
